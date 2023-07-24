@@ -1,4 +1,5 @@
 # M2PractiseApp
-First React proyect app - Henry Bootcamp
 
-Have to install React and react-router-dom in order to run the app. Webpack is being used as well.
+<h2>This project was maded during henry bootcamp. It has only react and redux, the information displayed is on the code, it dont have any api consuming</h2>
+
+<h3>The idea is to make a fully functional rick and morty app with a fully working api server.</h3>
