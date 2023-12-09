@@ -1,25 +1,35 @@
- import style from '../styles/div.module.css';
- import boton from '../styles/button.module.css';
+import style from "../styles/div.module.css";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
- 
- const Card = ({id, name, status, species, gender, origin, image, onClose}) => {
-   return (
-      <div className={style.griditem}>
-         <div className={style.contenedor1}>
-            <img src={image} alt="" /> 
-         </div>
-         <div className={style.contenedor2}>
-            <h2 className={style.contenedor2_h2}>Name: {name}</h2>
-            <h2 className={style.contenedor2_h2}>Status: {status}</h2>
-            <h2 className={style.contenedor2_h2}>Species: {species}</h2>
-            <h2 className={style.contenedor2_h2}>Gender: {gender}</h2>
-            <h2 className={style.contenedor2_h2}>Origin: {origin}</h2>
-         </div>
-         <div className={style.contenedor3}>
-            <button onClick={onClose} className={boton.button_85}>Cerrar</button>
-         </div>
-         </div>
-   );
+const CardCharacter = ({
+  id,
+  name,
+  status,
+  species,
+  gender,
+  origin,
+  image,
+  onClose,
+}) => {
+   //now its a bootstrap card item
+  return (
+    <div className={style.griditem}>
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={image} />
+      <Card.Body>
+        <Card.Title>{name}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">{status}</Card.Subtitle>
+        <Card.Text>
+          Species: {species}
+          Gender: {gender}
+          Origin: {origin}
+        </Card.Text>
+        <Button variant="primary" onClick={onClose}>Close</Button>
+      </Card.Body>
+    </Card>
+    </div>
+  );
 };
 
-export default Card
+export default CardCharacter;

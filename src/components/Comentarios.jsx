@@ -96,7 +96,7 @@ class Comentarios extends React.Component {
             <div className={style.fondo}>
                 <div className={style.return}>
                     <button className={boton.button_85}>
-                    <Link to='/home' className={Font.estilo_link}>Home</Link>
+                    <Link to='/' className={Font.estilo_link}>Home</Link>
                     </button>
                 </div>
                 <div className={style.aboutDiv}>

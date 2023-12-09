@@ -8,7 +8,7 @@ class App extends React.Component {
    render(){
    return (
       <Routes>
-        <Route path='/home' element={<Home/>} />
+        <Route path='/' element={<Home/>} />
         <Route path='/about' element={<About/>}/>
         <Route path='/comentarios' element={<Comentarios/>}/>
       </Routes>

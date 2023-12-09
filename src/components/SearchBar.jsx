@@ -14,9 +14,9 @@ class SearchBar extends React.Component{
    }
 
    handleSubmit = (event) => {
-      event.preventDefault(); //buena costumbre nomas 
-      this.props.onSearch(this.state.searchInput); //envia mediante onSearch lo que esta dentro del value
-      this.setState({ searchInput: '' }); //se resetea
+      event.preventDefault(); 
+      this.props.onSearch(this.state.searchInput); 
+      this.setState({ searchInput: '' }); 
     };
 
   handleInput = (event) => { //esto recarga la pagina cada vez que escribimos, nada mas
