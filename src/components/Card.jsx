@@ -1,4 +1,4 @@
-import style from "../styles/div.module.css";
+
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
@@ -14,7 +14,7 @@ const CardCharacter = ({
 }) => {
    //now its a bootstrap card item
   return (
-    <div className={style.griditem}>
+    <div >
       <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={image} />
       <Card.Body>

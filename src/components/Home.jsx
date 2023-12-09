@@ -1,36 +1,29 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import Cards from './Cards.jsx';
-import SearchBar from './SearchBar.jsx';
-import { fetchCharacters } from '../redux/actions/actions.js';
-import styles from '../styles/div.module.css';
+//Know the delete, orders and filters will be responsability of the actions and state life cicle
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import Cards from "./Cards.jsx";
+import SearchBar from "./SearchBar.jsx";
+import { fetchCharacters } from "../redux/actions/actions.js";
+
 
 const Home = ({ characters, fetchCharacters }) => {
-  
+
   useEffect(() => {
     fetchCharacters();
   }, [fetchCharacters]);
 
-  const handleSearch = () => {
+  return (
+    <div >
+      <div >
+        <SearchBar />
+      </div>
+      <Cards characters={characters} />
+    </div>
+  );
+};
 
-  }
+const mapStateToProps = (state) => ({
+  characters: state.characters,
+});
 
-  const handleCharacterDelete = () => {
-
-  }
-      
-      return (
-        <div className={styles.fondo}>
-          <div className={styles.nav}>
-            <SearchBar onSearch={handleSearch} />
-          </div>
-          <Cards characters={characters} onCharacterDelete={handleCharacterDelete} />
-        </div>
-      );
-    };
-    
-    const mapStateToProps = (state) => ({
-      characters: state.characters,
-    });
-    
-    export default connect(mapStateToProps, { fetchCharacters })(Home);
+export default connect(mapStateToProps, { fetchCharacters })(Home);

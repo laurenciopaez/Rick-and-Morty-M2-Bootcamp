@@ -1,8 +1,4 @@
 import React from "react";
-import Font from '../styles/font.module.css';
-import style from '../styles/div.module.css';
-import input from '../styles/input.module.css';
-import boton from '../styles/button.module.css';
 import {Link} from "react-router-dom"
 
 class Comentarios extends React.Component {
@@ -93,28 +89,28 @@ class Comentarios extends React.Component {
 
     render()  {
         return( 
-            <div className={style.fondo}>
-                <div className={style.return}>
-                    <button className={boton.button_85}>
-                    <Link to='/' className={Font.estilo_link}>Home</Link>
+            <div >
+                <div >
+                    <button>
+                    <Link to='/'>Home</Link>
                     </button>
                 </div>
-                <div className={style.aboutDiv}>
-                    <h1 className={Font.h1}>Seccion de comentarios</h1>
-                    <form className={style.aboutDiv2}>
-                        <input name="name" type="name" value={this.state.name} onChange={this.handleChange} className={input.input_comment} placeholder="Nombre"/>
+                <div >
+                    <h1 >Seccion de comentarios</h1>
+                    <form >
+                        <input name="name" type="name" value={this.state.name} onChange={this.handleChange} c placeholder="Nombre"/>
                         {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
 
-                        <input name="lastname" type="name" value={this.state.lastname} onChange={this.handleChange} className={input.input_comment} placeholder="Apellido" />
+                        <input name="lastname" type="name" value={this.state.lastname} onChange={this.handleChange} placeholder="Apellido" />
                         {!this.state.errors.lastname ? null : <div>{this.state.errors.lastname}</div>}
 
-                        <input name="mail" type="name" value={this.state.mail} onChange={this.handleChange} className={input.input_comment} placeholder="ejemplo@gmail.com" />
+                        <input name="mail" type="name" value={this.state.mail} onChange={this.handleChange}  placeholder="ejemplo@gmail.com" />
                         {!this.state.errors.mail ? null : <div>{this.state.errors.mail}</div>}
 
-                        <input name="comment" type="text" value={this.state.comment} onChange={this.handleChange} className={input.input_comment} placeholder="Su comentario aqui" />
+                        <input name="comment" type="text" value={this.state.comment} onChange={this.handleChange} placeholder="Su comentario aqui" />
 
                         
-                        <input type="submit" value="Submit" className={boton.button_85}/>
+                        <input type="submit" value="Submit" />
                     </form>
                 </div>
             </div>

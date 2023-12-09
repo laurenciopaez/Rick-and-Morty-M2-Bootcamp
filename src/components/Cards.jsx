@@ -1,7 +1,7 @@
 //this comp was a class component, now its a functional component.
 
 import React, { useEffect } from 'react';
-import style from '../styles/div.module.css';
+
 import CardCharacter from './Card';
 
 const Cards = ({characters}) => {
@@ -9,10 +9,9 @@ const Cards = ({characters}) => {
   useEffect(() => {
   }, [characters]);
 
-  console.log(characters)
 
   return (
-    <div className={style.div}>
+    <div >
       {characters
         .map(({ id, name, species, gender, image, origin, status }) => (
           <CardCharacter

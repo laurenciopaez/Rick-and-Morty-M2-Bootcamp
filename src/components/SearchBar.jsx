@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
-import styles from '../styles/button.module.css';
-import style from '../styles/div.module.css';
-import inpute from '../styles/input.module.css';
 import React from 'react';
-import Font from '../styles/font.module.css'
+
  
 class SearchBar extends React.Component{
    constructor(props) {
@@ -27,28 +24,28 @@ class SearchBar extends React.Component{
    render() {
       return (
          <>
-         <div className={style.nav_container}>
-            <div className={style.divContainer}>
-               <button className={styles.button_85}>
-                  <Link to='/about' className={Font.estilo_link}>About</Link>
+         <div >
+            <div >
+               <button >
+                  <Link to='/about' >About</Link>
                </button>
             </div>
          </div>
-         <div className={style.nav_container}>
+         <div>
             <form onSubmit={this.handleSubmit}>
             <input 
                type='search' 
-               className={inpute.input}
+               
                value={this.state.searchInput}
                onChange={this.handleInput}
             /> 
-            <button type='submit' className={styles.button_85}>Agregar</button> 
+            <button type='submit' c>Agregar</button> 
             </form>
          </div>
-         <div className={style.nav_container}>
-            <div className={style.divContainer}>
-               <button className={styles.button_85}>
-                  <Link to='/comentarios' className={Font.estilo_link}>Comentarios</Link>
+         <div >
+            <div >
+               <button>
+                  <Link to='/comentarios'>Comentarios</Link>
                </button>
             </div>
          </div>
