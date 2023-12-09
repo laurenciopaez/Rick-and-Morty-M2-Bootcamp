@@ -5,19 +5,25 @@ import Cards from "./Cards.jsx";
 import SearchBar from "./SearchBar.jsx";
 import { fetchCharacters } from "../redux/actions/actions.js";
 
-
 const Home = ({ characters, fetchCharacters }) => {
-
   useEffect(() => {
     fetchCharacters();
   }, [fetchCharacters]);
 
   return (
-    <div >
-      <div >
+    <div
+      style={{
+        backgroundImage: `url("https://i.pinimg.com/564x/e0/c7/47/e0c747a9d869f40f6d572a651791bdb5.jpg")`,
+        backgroundSize: "cover",
+        width: "screen",
+      }}
+    >
+      <div className="mt-2 mb-2 fixed ">
         <SearchBar />
       </div>
-      <Cards characters={characters} />
+      <div className="w-full">
+        <Cards characters={characters} />
+      </div>
     </div>
   );
 };

@@ -1,57 +1,40 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 
- 
-class SearchBar extends React.Component{
-   constructor(props) {
-      super(props);
-      this.state = {
-         searchInput: '',
-      };
-   }
+const SearchBar = () => {
+  const [searchInput, setSearchInput] = useState("");
 
-   handleSubmit = (event) => {
-      event.preventDefault(); 
-      this.props.onSearch(this.state.searchInput); 
-      this.setState({ searchInput: '' }); 
-    };
-
-  handleInput = (event) => { //esto recarga la pagina cada vez que escribimos, nada mas
-    this.setState({ searchInput: event.target.value }); 
-    console.log('hola '+this.state.searchInput) // control
+  const handleInput = (event) => {
+    setSearchInput(event.target.value);
   };
 
-   render() {
-      return (
-         <>
-         <div >
-            <div >
-               <button >
-                  <Link to='/about' >About</Link>
-               </button>
-            </div>
-         </div>
-         <div>
-            <form onSubmit={this.handleSubmit}>
-            <input 
-               type='search' 
-               
-               value={this.state.searchInput}
-               onChange={this.handleInput}
-            /> 
-            <button type='submit' c>Agregar</button> 
-            </form>
-         </div>
-         <div >
-            <div >
-               <button>
-                  <Link to='/comentarios'>Comentarios</Link>
-               </button>
-            </div>
-         </div>
-         </>
-      );
-   }
-}; 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSearchInput(""); // Limpiar el input después de la búsqueda
+  };
+
+  return (
+    <div className="d-flex flex-row w-4/5 bg-slate-400 rounded-lg ">
+      <Button href="/about" className="flex">
+        About
+      </Button>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="search"
+          value={searchInput}
+          onChange={handleInput}
+        />
+        <button type="submit">
+          Agregar
+        </button>
+      </form>
+
+      <Button href="/favs" className="flex">
+        Your favs
+      </Button>
+    </div>
+  );
+};
 
 export default SearchBar;

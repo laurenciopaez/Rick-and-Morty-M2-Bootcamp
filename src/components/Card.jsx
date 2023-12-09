@@ -1,4 +1,3 @@
-
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
@@ -12,10 +11,9 @@ const CardCharacter = ({
   image,
   onClose,
 }) => {
-   //now its a bootstrap card item
+  //now its a bootstrap card item
   return (
-    <div >
-      <Card style={{ width: '18rem' }}>
+    <Card style={{ width: "18rem" }} >
       <Card.Img variant="top" src={image} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
@@ -25,10 +23,11 @@ const CardCharacter = ({
           Gender: {gender}
           Origin: {origin}
         </Card.Text>
-        <Button variant="primary" onClick={onClose}>Close</Button>
+        <Button variant="primary" onClick={onClose}>
+          Close
+        </Button>
       </Card.Body>
     </Card>
-    </div>
   );
 };
 

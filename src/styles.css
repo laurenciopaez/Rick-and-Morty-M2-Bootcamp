@@ -1,3 +1,43 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 0, 0, 0;
+      --background-end-rgb: 0, 0, 0;
+    }
+  }
+  
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+      )
+      rgb(var(--background-start-rgb));
+    scrollbar-width: thin; /* Para Firefox */
+    scrollbar-color: #ffffff rgba(240, 240, 240, 0); /* Color del pulgar y la pista de la barra de desplazamiento */
+  }
+  body::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #ffffff; /* Color del pulgar de la barra de desplazamiento (verde en este caso) */
+    border-radius: 6px; 
+  }
+  
+  body::-webkit-scrollbar-track {
+    background-color: rgba(240, 240, 240, 0); /* Color de fondo de la pista de la barra de desplazamiento con transparencia */
+    border-radius: 12px; /* Color de fondo de la pista de la barra de desplazamiento */
+  }
