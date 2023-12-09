@@ -7,6 +7,7 @@ import {
   
   const initialState = {
     characters: [],
+    prevState_characters: [],
     loading: false,
     error: null,
   };
@@ -23,6 +24,7 @@ import {
           ...state,
           loading: false,
           characters: action.payload,
+          prevState_characters: action.payload,
           error: null,
         };
       case FETCH_CHARACTERS_FAILURE:

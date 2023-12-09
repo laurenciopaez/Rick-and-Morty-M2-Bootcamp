@@ -1,31 +1,19 @@
 //this comp was a class component, now its a functional component.
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import style from '../styles/div.module.css';
 import CardCharacter from './Card';
 
-const Cards = (props) => {
-  const [characters, setCharacters] = useState(props.characters);
+const Cards = ({characters}) => {
 
   useEffect(() => {
-    if (props.characters !== characters) {
-      setCharacters(props.characters);
-    }
-  }, [props.characters, characters]);
+  }, [characters]);
 
-  const handleClick = (id) => {
-    setCharacters((prevCharacters) =>
-      prevCharacters.map((character) =>
-        character.id === id ? { ...character, render: false } : character
-      )
-    );
-    props.onCharacterDelete(id);
-  };
+  console.log(characters)
 
   return (
     <div className={style.div}>
       {characters
-        .filter((character) => character.render)
         .map(({ id, name, species, gender, image, origin, status }) => (
           <CardCharacter
             key={id}
@@ -36,7 +24,7 @@ const Cards = (props) => {
             image={image}
             origin={origin.name}
             status={status}
-            onClose={() => handleClick(id)}
+           //onClose={() => handleClick(id)}
           />
         ))}
     </div>
