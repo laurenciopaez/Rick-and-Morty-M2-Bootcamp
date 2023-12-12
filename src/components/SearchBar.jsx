@@ -14,23 +14,28 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="d-flex flex-row w-4/5 bg-slate-400 rounded-lg ">
-      <Button href="/about" className="flex">
+    <div className="flex flex-row w-4/5 bg-slate-50 rounded-lg items-center justify-between m-auto "
+    style={{
+      backgroundImage: 'url("https://www.xtrafondos.com/thumbs/1_9386.jpg")'
+    }}>
+      <Button href="/about" className="flex mb-1 mt-1 ml-1">
         About
       </Button>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex content-center">
         <input
           type="search"
           value={searchInput}
           onChange={handleInput}
+          className="rounded-md mr-2 p-1 mt-1 mb-1 border-black border-1 bg-white"
+          placeholder="Search by id"
         />
-        <button type="submit">
-          Agregar
-        </button>
+        <Button type="submit" className="bg-blue-500 mt-1 mb-1">
+          Search
+        </Button>
       </form>
 
-      <Button href="/favs" className="flex">
+      <Button href="/favs" className="flex mr-1 mb-1 mt-1">
         Your favs
       </Button>
     </div>

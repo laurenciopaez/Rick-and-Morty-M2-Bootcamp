@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Cards from "./Cards.jsx";
 import SearchBar from "./SearchBar.jsx";
+import Filters from "./Filters.jsx";
 import { fetchCharacters } from "../redux/actions/actions.js";
 
 const Home = ({ characters, fetchCharacters }) => {
@@ -17,17 +18,17 @@ const Home = ({ characters, fetchCharacters }) => {
         width: "screen",
       }}
     >
-      <div className="mt-2 mb-2 ">
+      <div className="mt-2 mb-2 w-full">
         <SearchBar />
       </div>
       <div className="w-full flex flex-row">
-        <div className="w-1/3">
+        <div className="w-1/3 m-1 p-1 bg-slate-50 rounded-md">
+          <Filters />
         </div>
-        <div className="w-2/3 container">
-        <Cards characters={characters} />
+        <div className="w-2/3 container mt-1">
+          <Cards characters={characters} />
+        </div>
       </div>
-      </div>
-     
     </div>
   );
 };
