@@ -14,16 +14,20 @@ const Home = ({ characters, fetchCharacters }) => {
     <div
       style={{
         backgroundImage: `url("https://i.pinimg.com/564x/e0/c7/47/e0c747a9d869f40f6d572a651791bdb5.jpg")`,
-        backgroundSize: "cover",
         width: "screen",
       }}
     >
-      <div className="mt-2 mb-2 fixed ">
+      <div className="mt-2 mb-2 ">
         <SearchBar />
       </div>
-      <div className="w-full">
+      <div className="w-full flex flex-row">
+        <div className="w-1/3">
+        </div>
+        <div className="w-2/3 container">
         <Cards characters={characters} />
       </div>
+      </div>
+     
     </div>
   );
 };

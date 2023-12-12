@@ -1,7 +1,8 @@
 //this comp was a class component, now its a functional component.
 
 import React, {useState, useEffect } from 'react';
-
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import CardCharacter from './Card';
 
 const Cards = ({characters}) => {
@@ -21,21 +22,22 @@ const Cards = ({characters}) => {
   const charactersToShow = characters.slice(startIndex, endIndex);
 
   return (
-    <div className='d-grid grid grid-cols-4 gap-4'>
+    <Row xs={1} md={4} className='g-4'>
       {charactersToShow.map(({ id, name, species, gender, image, origin, status }) => (
-        <CardCharacter
-          key={id}
-          id={id}
-          name={name}
-          species={species}
-          gender={gender}
-          image={image}
-          origin={origin.name}
-          status={status}
-          // onClose={() => handleClick(id)}
-        />
+        <Col key={id}>
+          <CardCharacter
+            id={id}
+            name={name}
+            species={species}
+            gender={gender}
+            image={image}
+            origin={origin.name}
+            status={status}
+            // onClose={() => handleClick(id)}
+          />
+        </Col>
       ))}
-      <div className="pagination">
+      <div className='pagination'>
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
@@ -50,7 +52,7 @@ const Cards = ({characters}) => {
           Siguiente
         </button>
       </div>
-    </div>
+    </Row>
   );
 };
 

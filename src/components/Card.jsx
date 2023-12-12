@@ -13,14 +13,14 @@ const CardCharacter = ({
 }) => {
   //now its a bootstrap card item
   return (
-    <Card style={{ width: "18rem" }} >
+    <Card className="w-[90%]" >
       <Card.Img variant="top" src={image} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{status}</Card.Subtitle>
         <Card.Text>
-          Species: {species}
-          Gender: {gender}
+          Species: {species} <br/>
+          Gender: {gender} <br/>
           Origin: {origin}
         </Card.Text>
         <Button variant="primary" onClick={onClose}>
