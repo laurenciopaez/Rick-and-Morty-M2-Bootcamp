@@ -27,8 +27,10 @@
   <li><strong>Exploración de Personajes:</strong> Los usuarios pueden explorar una lista de personajes de Rick and Morty.</li>
   <li><strong>Detalles del Personaje:</strong> Al hacer clic en un personaje, se muestran detalles como nombre, especie, género, origen, estado y una imagen.</li>
   <li><strong>Favoritos:</strong> Los usuarios pueden marcar personajes como favoritos para tener un acceso rápido a sus perfiles.</li>
-  <li><strong>Búsqueda por Nombre:</strong> Se proporciona una barra de búsqueda para encontrar personajes por su nombre.</li>
+  <li><strong>Búsqueda por Id:</strong> Se proporciona una barra de búsqueda para encontrar personajes por su id</li>
   <li><strong>Filtrado por Estado:</strong> Los usuarios pueden filtrar personajes según su estado (vivo, muerto, desconocido).</li>
+  <li><strong>Filtrado por Genero:</strong> Los usuarios pueden filtrar personajes según su genero (mujer, hombre, sin genero, desconocido).</li>
+  <li><strong>Filtrado por Especie:</strong> Los usuarios pueden filtrar personajes según su especie.</li>
   <li><strong>Paginación:</strong> La lista de personajes se organiza en páginas para facilitar la navegación.</li>
   <li><strong>Diseño Responsivo:</strong> La aplicación es completamente responsiva para adaptarse a diferentes dispositivos.</li>
 </ol>
