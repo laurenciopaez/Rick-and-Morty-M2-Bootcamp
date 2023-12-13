@@ -55,7 +55,7 @@ const charactersReducer = (state = initialState, action) => {
     case GET_SPECIES:
       return {
         ...state,
-        species: [action.payload],
+        species: action.payload,
       };
     case FETCH_FILTER_BY_GENRE:
       return {
@@ -67,12 +67,12 @@ const charactersReducer = (state = initialState, action) => {
       return {
         
         ...state,
-        characters: [action.payload],
+        characters: action.payload,
       };
     case FETCH_FILTER_BY_STATE:
       return {
         ...state,
-        characters: [action.payload],
+        characters: action.payload,
       };
     default:
       return state;

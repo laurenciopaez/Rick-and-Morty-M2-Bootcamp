@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { connect, useDispatch } from "react-redux";
-import { fetchFilterGenre, fetchReset } from "../redux/actions/actions";
+import { fetchFilterGenre, fetchFilterSpecies, fetchFilterState, fetchReset } from "../redux/actions/actions";
 import Form from "react-bootstrap/Form";
 
 const Filters = ({ species }) => {
@@ -10,6 +10,10 @@ const Filters = ({ species }) => {
   const handleReset = (event) => {
     event.preventDefault();
 
+    document.getElementById("specieSelect").value = "none";
+    document.getElementById("genderSelect").value = "none";
+    document.getElementById("statusSelect").value = "none";
+
     dispatch(fetchReset());
   };
 
@@ -17,6 +21,20 @@ const Filters = ({ species }) => {
     event.preventDefault();
     if(event.target.value !== "none") {
         dispatch(fetchFilterGenre(event.target.value))
+    }
+  }
+
+  const handleStatusSelect = (event) => {
+    event.preventDefault();
+    if(event.target.value !== "none") {
+        dispatch(fetchFilterState(event.target.value))
+    }
+  }
+
+  const handleSpecieSelect = (event) => {
+    event.preventDefault();
+    if(event.target.value !== "none") {
+        dispatch(fetchFilterSpecies(event.target.value))
     }
   }
 
@@ -41,10 +59,10 @@ const Filters = ({ species }) => {
           <h2 className="text-lg font-semibold text-black w-1/3">
             Search by Specie:
           </h2>
-          <Form.Select className="w-1/3 border-2 border-black">
+          <Form.Select className="w-1/3 border-2 border-black" id="specieSelect" onChange= {handleSpecieSelect}>
             <option value="none">None</option>
             {species.map((element, key) => (
-              <option key={key} value={key}>
+              <option key={key} value={element}>
                 {element}
               </option>
             ))}
@@ -54,7 +72,7 @@ const Filters = ({ species }) => {
         <h2 className="text-lg font-semibold text-black w-1/3">
             Search by Gender:
           </h2>
-          <Form.Select className="w-1/3 border-2 border-black" onChange={handleGenderSelect}>
+          <Form.Select className="w-1/3 border-2 border-black" id="genderSelect" onChange={handleGenderSelect}>
             <option value="none">None</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -66,7 +84,7 @@ const Filters = ({ species }) => {
         <h2 className="text-lg font-semibold text-black w-1/3">
             Search by Status:
           </h2>
-          <Form.Select className="w-1/3 border-2 border-black">
+          <Form.Select className="w-1/3 border-2 border-black" id="statusSelect" onChange={handleStatusSelect}>
             <option value="none">None</option>
             <option value="Alive">Alive</option>
             <option value="Dead">Dead</option>
@@ -82,4 +100,4 @@ const mapStateToProps = (state) => ({
   species: state.species,
 });
 
-export default connect(mapStateToProps, { fetchReset, fetchFilterGenre })(Filters);
+export default connect(mapStateToProps, { fetchReset, fetchFilterGenre, fetchFilterState, fetchFilterSpecies })(Filters);

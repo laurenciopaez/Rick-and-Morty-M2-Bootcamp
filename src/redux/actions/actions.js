@@ -8,6 +8,7 @@ import {
   FETCH_RESET,
   GET_SPECIES,
   FETCH_FILTER_BY_GENRE,
+  FETCH_FILTER_BY_STATE,
 } from "../reducers/types";
 
 export const fetchCharactersRequest = () => ({
@@ -40,7 +41,7 @@ export const getSpecies = () => {
         species.push(element.species);
       }
     });
-
+    console.log(species)
     dispatch({
       type: GET_SPECIES,
       payload: species,
@@ -174,7 +175,7 @@ export const fetchFilterGenre = (genre) => {
   };
 };
 
-export const fetchFilterState = () => {
+export const fetchFilterState = (status) => {
   return (dispatch, getState) => {
     const state = getState();
 
@@ -184,12 +185,26 @@ export const fetchFilterState = () => {
       );
       return;
     }
+    const charactersState = state.characters;
+    let leftState = [];
 
+    const charactersArray = Object.values(charactersState);
+    
+    charactersArray.forEach( (element) => {
+      if(element.status === status ) {
+        leftState.push(element)
+      }
+    })
+
+    dispatch({
+      type: FETCH_FILTER_BY_STATE,
+      payload: leftState,
+    });
    // const charactersState = state.characters;
   };
 };
 
-export const fetchFilterSpecies = () => {
+export const fetchFilterSpecies = (species) => {
   return (dispatch, getState) => {
     const state = getState();
 
@@ -199,7 +214,21 @@ export const fetchFilterSpecies = () => {
       );
       return;
     }
+    const charactersState = state.characters;
+    let leftSpecies = [];
 
+    const charactersArray = Object.values(charactersState);
+    
+    charactersArray.forEach( (element) => {
+      if(element.species === species ) {
+        leftSpecies.push(element)
+      }
+    })
+
+    dispatch({
+      type: FETCH_FILTER_BY_STATE,
+      payload: leftSpecies,
+    });
    // const charactersState = state.characters;
   };
 };
