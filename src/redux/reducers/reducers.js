@@ -4,6 +4,7 @@ import {
     FETCH_CHARACTERS_SUCCESS,
     FETCH_CHARACTERS_FAILURE,
     FETCH_SEARCH_BY_ID,
+    FETCH_RESET,
   } from './types';
   
   const initialState = {
@@ -40,6 +41,11 @@ import {
             prevState_characters: state.characters,
             characters: [action.payload], // Actualiza prevState_characters
           };
+        case FETCH_RESET:
+          return {
+            ...state,
+            characters: [...state.prevState_characters]
+          }
       default:
         return state;
     }

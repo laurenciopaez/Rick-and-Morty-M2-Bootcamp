@@ -5,6 +5,7 @@ import {
   FETCH_CHARACTERS_SUCCESS,
   FETCH_CHARACTERS_FAILURE,
   FETCH_SEARCH_BY_ID,
+  FETCH_RESET,
 } from "../reducers/types";
 
 export const fetchCharactersRequest = () => ({
@@ -57,13 +58,14 @@ export const fetchCharacters = () => {
 
 //busqueda por id
 
-
 export const fetchSearchById = (characterId) => {
   return (dispatch, getState) => {
     const state = getState();
 
     if (!state || !state.characters) {
-      console.error('El estado no está definido o no tiene la propiedad characters');
+      console.error(
+        "El estado no está definido o no tiene la propiedad characters"
+      );
       return;
     }
 
@@ -71,16 +73,16 @@ export const fetchSearchById = (characterId) => {
     let existingCharacter = null;
 
     if (characterId == null) {
-      console.error('characterId no es un valor válido');
+      console.error("characterId no es un valor válido");
       return;
     }
 
-    console.log('charactersState:', charactersState);
+    console.log("charactersState:", charactersState);
 
-    charactersState.forEach(element => {
-        if (element.id === characterId) {
-           existingCharacter = element
-        }
+    charactersState.forEach((element) => {
+      if (element.id === characterId) {
+        existingCharacter = element;
+      }
     });
 
     if (existingCharacter) {
@@ -104,5 +106,15 @@ export const fetchSearchById = (characterId) => {
           dispatch(fetchCharactersFailure(error.message));
         });
     }
+  };
+};
+
+// reset
+
+export const fetchReset = () => {
+  return (dispatch) => {
+    dispatch({
+      type: FETCH_RESET,
+    });
   };
 };
