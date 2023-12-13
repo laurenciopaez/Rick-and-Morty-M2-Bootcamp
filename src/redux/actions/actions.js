@@ -7,6 +7,7 @@ import {
   FETCH_SEARCH_BY_ID,
   FETCH_RESET,
   GET_SPECIES,
+  FETCH_FILTER_BY_GENRE,
 } from "../reducers/types";
 
 export const fetchCharactersRequest = () => ({
@@ -23,37 +24,35 @@ export const fetchCharactersFailure = (error) => ({
   payload: error,
 });
 
-export const fetchGetSpecies = (species) => ({
-  type: GET_SPECIES,
-  payload: species,
-})
+//obtiene los nombres de las especies y actualiza el estado
 
 export const getSpecies = () => {
   return (dispatch, getState) => {
-    
-    let species = []
+    let species = [];
 
-    const state = getState()
+    const state = getState();
     let objCharacters = state.characters;
-    
+
     const charactersArray = Object.values(objCharacters);
-    
-    charactersArray.forEach(element => {
+
+    charactersArray.forEach((element) => {
       if (!species.includes(element.species)) {
-        species.push(element.species)
+        species.push(element.species);
       }
     });
-    
-    dispatch(fetchGetSpecies(species))
-  }
-}
 
+    dispatch({
+      type: GET_SPECIES,
+      payload: species,
+    });
+  };
+};
 
 //fetch to api, 100 characters
 export const fetchCharacters = () => {
   return (dispatch) => {
     dispatch(fetchCharactersRequest());
-    
+
     const totalPages = 5;
     const charactersPerPage = 20;
 
@@ -104,8 +103,6 @@ export const fetchSearchById = (characterId) => {
       return;
     }
 
-    console.log("charactersState:", charactersState);
-
     charactersState.forEach((element) => {
       if (element.id === characterId) {
         existingCharacter = element;
@@ -146,23 +143,63 @@ export const fetchReset = () => {
   };
 };
 
-
 //filtrado por genero
 
-export const fetchFilterGenre = () => {
+export const fetchFilterGenre = (genre) => {
   return (dispatch, getState) => {
+    const state = getState();
 
-  }
-}
+    if (!state || !state.characters) {
+      console.error(
+        "El estado no está definido o no tiene la propiedad characters"
+      );
+      return;
+    }
+
+    const charactersState = state.characters;
+    let leftGenres = [];
+
+    const charactersArray = Object.values(charactersState);
+    
+    charactersArray.forEach( (element) => {
+      if(element.gender === genre ) {
+        leftGenres.push(element)
+      }
+    })
+
+    dispatch({
+      type: FETCH_FILTER_BY_GENRE,
+      payload: leftGenres,
+    });
+  };
+};
 
 export const fetchFilterState = () => {
   return (dispatch, getState) => {
+    const state = getState();
 
-  }
-}
+    if (!state || !state.characters) {
+      console.error(
+        "El estado no está definido o no tiene la propiedad characters"
+      );
+      return;
+    }
+
+   // const charactersState = state.characters;
+  };
+};
 
 export const fetchFilterSpecies = () => {
   return (dispatch, getState) => {
+    const state = getState();
 
-  }
-}
+    if (!state || !state.characters) {
+      console.error(
+        "El estado no está definido o no tiene la propiedad characters"
+      );
+      return;
+    }
+
+   // const charactersState = state.characters;
+  };
+};
