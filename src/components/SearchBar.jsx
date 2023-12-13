@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { fetchSearchById } from "../redux/actions/actions";
+import { connect, useDispatch } from "react-redux";
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
 
   const handleInput = (event) => {
@@ -10,6 +13,9 @@ const SearchBar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+     dispatch(fetchSearchById(parseInt(searchInput)));
+
     setSearchInput(""); // Limpiar el input después de la búsqueda
   };
 
@@ -22,15 +28,15 @@ const SearchBar = () => {
         About
       </Button>
 
-      <form onSubmit={handleSubmit} className="flex content-center">
+      <form className="flex content-center">
         <input
           type="search"
           value={searchInput}
           onChange={handleInput}
-          className="rounded-md mr-2 p-1 mt-1 mb-1 border-black border-1 bg-white"
+          className="rounded-md mr-2 p-1 mt-1 mb-1 border-black text-black border-1 bg-white"
           placeholder="Search by id"
         />
-        <Button type="submit" className="bg-blue-500 mt-1 mb-1">
+        <Button onClick={handleSubmit} className="bg-blue-500 mt-1 mb-1">
           Search
         </Button>
       </form>
@@ -42,4 +48,8 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+const mapStateToProps = (state) => ({
+  
+})
+
+export default connect(mapStateToProps, {fetchSearchById})(SearchBar);

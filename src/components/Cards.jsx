@@ -4,6 +4,7 @@ import React, {useState, useEffect } from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CardCharacter from './Card';
+import { connect } from 'react-redux';
 
 const Cards = ({characters}) => {
 
@@ -12,6 +13,7 @@ const Cards = ({characters}) => {
 
   useEffect(() => {
   }, [characters]);
+
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -56,5 +58,9 @@ const Cards = ({characters}) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  characters: state.characters,
+})
 
-export default Cards;
+
+export default connect(mapStateToProps, {})(Cards);
