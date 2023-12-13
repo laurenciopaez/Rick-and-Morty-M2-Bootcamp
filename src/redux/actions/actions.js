@@ -6,6 +6,7 @@ import {
   FETCH_CHARACTERS_FAILURE,
   FETCH_SEARCH_BY_ID,
   FETCH_RESET,
+  GET_SPECIES,
 } from "../reducers/types";
 
 export const fetchCharactersRequest = () => ({
@@ -22,11 +23,37 @@ export const fetchCharactersFailure = (error) => ({
   payload: error,
 });
 
+export const fetchGetSpecies = (species) => ({
+  type: GET_SPECIES,
+  payload: species,
+})
+
+export const getSpecies = () => {
+  return (dispatch, getState) => {
+    
+    let species = []
+
+    const state = getState()
+    let objCharacters = state.characters;
+    
+    const charactersArray = Object.values(objCharacters);
+    
+    charactersArray.forEach(element => {
+      if (!species.includes(element.species)) {
+        species.push(element.species)
+      }
+    });
+    
+    dispatch(fetchGetSpecies(species))
+  }
+}
+
+
 //fetch to api, 100 characters
 export const fetchCharacters = () => {
   return (dispatch) => {
     dispatch(fetchCharactersRequest());
-
+    
     const totalPages = 5;
     const charactersPerPage = 20;
 
@@ -118,3 +145,24 @@ export const fetchReset = () => {
     });
   };
 };
+
+
+//filtrado por genero
+
+export const fetchFilterGenre = () => {
+  return (dispatch, getState) => {
+
+  }
+}
+
+export const fetchFilterState = () => {
+  return (dispatch, getState) => {
+
+  }
+}
+
+export const fetchFilterSpecies = () => {
+  return (dispatch, getState) => {
+
+  }
+}

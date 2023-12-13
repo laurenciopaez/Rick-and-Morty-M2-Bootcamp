@@ -1,14 +1,17 @@
 //Know the delete, orders and filters will be responsability of the actions and state life cicle
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import Cards from "./Cards.jsx";
 import SearchBar from "./SearchBar.jsx";
 import Filters from "./Filters.jsx";
-import { fetchCharacters } from "../redux/actions/actions.js";
+import { fetchCharacters, getSpecies } from "../redux/actions/actions.js";
 
 const Home = ({ fetchCharacters }) => {
+  const dispatch = useDispatch()
+
   useEffect(() => {
     fetchCharacters();
+    dispatch(getSpecies());
   }, [fetchCharacters]);
 
   return (
@@ -37,4 +40,4 @@ const Home = ({ fetchCharacters }) => {
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, { fetchCharacters })(Home);
+export default connect(mapStateToProps, { fetchCharacters, getSpecies })(Home);

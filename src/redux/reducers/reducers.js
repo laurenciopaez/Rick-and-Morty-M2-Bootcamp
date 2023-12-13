@@ -5,11 +5,13 @@ import {
     FETCH_CHARACTERS_FAILURE,
     FETCH_SEARCH_BY_ID,
     FETCH_RESET,
+    GET_SPECIES,
   } from './types';
   
   const initialState = {
     characters: [],
     prevState_characters: [],
+    species: [],
     loading: false,
     error: null,
   };
@@ -45,6 +47,11 @@ import {
           return {
             ...state,
             characters: [...state.prevState_characters]
+          }
+        case GET_SPECIES:
+          return {
+            ...state,
+            species: action.payload,
           }
       default:
         return state;
