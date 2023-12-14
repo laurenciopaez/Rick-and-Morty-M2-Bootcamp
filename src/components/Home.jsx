@@ -10,9 +10,13 @@ const Home = ({ fetchCharacters }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchCharacters();
-    dispatch(getSpecies());
-  }, [fetchCharacters]);
+    const fetchData = async () => {
+      await dispatch(fetchCharacters());
+      dispatch(getSpecies());
+    };
+
+    fetchData();
+  }, [dispatch]);
 
   return (
     <div
@@ -38,6 +42,6 @@ const Home = ({ fetchCharacters }) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = () => ({});
 
 export default connect(mapStateToProps, { fetchCharacters, getSpecies })(Home);

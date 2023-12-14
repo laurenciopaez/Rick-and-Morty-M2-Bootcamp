@@ -1,6 +1,11 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { connect, useDispatch } from "react-redux";
+import {
+  fetchLikedCharacters,
+  fetchUnlikedCharacters,
+} from "../redux/actions/actions";
 
 const CardCharacter = ({
   id,
@@ -11,8 +16,14 @@ const CardCharacter = ({
   origin,
   image,
   onClose,
+  fetchLikedCharacters,
+  fetchUnlikedCharacters,
+  character, //lista de characters entera para pasarla como fav
+  fav_List,
+  index
 }) => {
   //now its a bootstrap card item
+  const dispatch = useDispatch();
 
   const [isCardOpen, setIsCardOpen] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
@@ -23,8 +34,15 @@ const CardCharacter = ({
   };
 
   const handleLikeClick = () => {
+    if (isLiked) {
+      dispatch(fetchUnlikedCharacters(id));
+    } else {
+      dispatch(fetchLikedCharacters(character[index]));
+    }
     setIsLiked(!isLiked);
   };
+
+  //console.log(id)
 
   const statusColorClass = status === "Alive" ? "bg-green-500" : "bg-red-500";
 
@@ -34,11 +52,9 @@ const CardCharacter = ({
         <div className="absolute top-2 right-2">
           <Button variant="link" onClick={handleLikeClick}>
             {isLiked ? (
-              <i className="bi bi-heart-fill text-2xl text-red-500 "   ></i>
+              <i className="bi bi-heart-fill text-2xl text-red-500 "></i>
             ) : (
-              <i className="bi bi-heart-fill text-2xl text-white  "  >
-                {" "}
-              </i>
+              <i className="bi bi-heart-fill text-2xl text-white  "> </i>
             )}
           </Button>
         </div>
@@ -69,4 +85,12 @@ const CardCharacter = ({
   );
 };
 
-export default CardCharacter;
+const mapStateToProps = (state) => ({
+  character: state.characters,
+  fav_List: state.liked_characters
+});
+
+export default connect(mapStateToProps, {
+  fetchLikedCharacters,
+  fetchUnlikedCharacters,
+})(CardCharacter);

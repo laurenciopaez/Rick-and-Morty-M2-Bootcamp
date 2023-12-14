@@ -1,82 +1,74 @@
-// reducers.js
-import {
-  FETCH_CHARACTERS_REQUEST,
-  FETCH_CHARACTERS_SUCCESS,
-  FETCH_CHARACTERS_FAILURE,
-  FETCH_SEARCH_BY_ID,
-  FETCH_RESET,
-  GET_SPECIES,
-  FETCH_FILTER_BY_GENRE,
-  FETCH_FILTER_BY_SPECIES,
-  FETCH_FILTER_BY_STATE,
-} from "./types";
+// charactersSlice.js
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  characters: [],
-  prevState_characters: [],
-  species: [],
-  loading: false,
-  error: null,
-};
+const charactersSlice = createSlice({
+  name: 'characters',
+  initialState: {
+    characters: [],
+    prevState_characters: [],
+    species: [],
+    liked_characters: [],
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    addLike: (state, action) => {
+      const newLikedCharacter = action.payload;
+      if (!state.liked_characters.some((character) => character.id === newLikedCharacter.id)) {
+        state.liked_characters.push(newLikedCharacter);
+      }
+    },
+    deleteLike: (state, action) => {
+      state.liked_characters = action.payload;
+    },
+    fetchCharactersRequest: (state) => {
+      state.loading = true;
+    },
+    fetchCharactersSuccess: (state, action) => {
+      state.loading = false;
+      state.characters = action.payload;
+      state.prevState_characters = action.payload;
+      state.error = null;
+    },
+    fetchCharactersFailure: (state, action) => {
+      state.loading = false;
+      state.characters = [];
+      state.error = action.payload;
+    },
+    fetchSearchById: (state, action) => {
+      state.prevState_characters = state.characters;
+      state.characters = [action.payload];
+    },
+    fetchReset: (state) => {
+      state.characters = [...state.prevState_characters];
+    },
+    getSpecies: (state, action) => {
+      state.species = action.payload;
+    },
+    fetchFilterByGenre: (state, action) => {
+      state.characters = action.payload;
+    },
+    fetchFilterBySpecies: (state, action) => {
+      state.characters = action.payload;
+    },
+    fetchFilterByState: (state, action) => {
+      state.characters = action.payload;
+    },
+  },
+});
 
-const charactersReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case FETCH_CHARACTERS_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
-    case FETCH_CHARACTERS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        characters: action.payload,
-        prevState_characters: action.payload,
-        error: null,
-      };
-    case FETCH_CHARACTERS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        characters: [],
-        error: action.payload,
-      };
-    case FETCH_SEARCH_BY_ID:
-      return {
-        ...state,
-        prevState_characters: state.characters,
-        characters: [action.payload], // Actualiza prevState_characters
-      };
-    case FETCH_RESET:
-      return {
-        ...state,
-        characters: [...state.prevState_characters],
-      };
-    case GET_SPECIES:
-      return {
-        ...state,
-        species: action.payload,
-      };
-    case FETCH_FILTER_BY_GENRE:
-      return {
-        
-        ...state,
-        characters: action.payload,
-      };
-    case FETCH_FILTER_BY_SPECIES:
-      return {
-        
-        ...state,
-        characters: action.payload,
-      };
-    case FETCH_FILTER_BY_STATE:
-      return {
-        ...state,
-        characters: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+export const {
+  addLike,
+  deleteLike,
+  fetchCharactersRequest,
+  fetchCharactersSuccess,
+  fetchCharactersFailure,
+  fetchSearchById,
+  fetchReset,
+  getSpecies,
+  fetchFilterByGenre,
+  fetchFilterBySpecies,
+  fetchFilterByState,
+} = charactersSlice.actions;
 
-export default charactersReducer;
+export default charactersSlice.reducer;

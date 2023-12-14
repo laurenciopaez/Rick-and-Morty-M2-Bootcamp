@@ -30,9 +30,10 @@ const Cards = ({ characters }) => {
   return (
     <Row xs={1} md={4} className="g-4">
       {charactersToShow.map(
-        ({ id, name, species, gender, image, origin, status }) => (
+        ({ id, name, species, gender, image, origin, status }, index) => (
           <Col key={id}>
             <CardCharacter
+              index = {index}
               id={id}
               name={name}
               species={species}
