@@ -12,7 +12,7 @@ import {
   fetchFilterByGenre,
   fetchFilterBySpecies,
   fetchFilterByState,
-} from "../ruta-donde-se-encuentra-el-slice/charactersSlice";
+} from "../reducers/reducers";
 
 export const fetchLikedCharacters = (character) => (dispatch) => {
   dispatch(addLike(character));

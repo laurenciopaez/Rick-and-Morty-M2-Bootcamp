@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchLikedCharacters,
   fetchUnlikedCharacters,
@@ -16,14 +16,13 @@ const CardCharacter = ({
   origin,
   image,
   onClose,
-  fetchLikedCharacters,
-  fetchUnlikedCharacters,
-  character, //lista de characters entera para pasarla como fav
-  fav_List,
   index
 }) => {
   //now its a bootstrap card item
   const dispatch = useDispatch();
+  
+  const character = useSelector((state) => state.characters.characters);
+  const fav_List = useSelector((state) => state.characters.liked_characters);
 
   const [isCardOpen, setIsCardOpen] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
@@ -85,12 +84,4 @@ const CardCharacter = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  character: state.characters,
-  fav_List: state.liked_characters
-});
-
-export default connect(mapStateToProps, {
-  fetchLikedCharacters,
-  fetchUnlikedCharacters,
-})(CardCharacter);
+export default CardCharacter;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { fetchSearchById } from "../redux/actions/actions";
-import { connect, useDispatch } from "react-redux";
+import { fetchSearchByIdAction } from "../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const SearchBar = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-     dispatch(fetchSearchById(parseInt(searchInput)));
+     dispatch(fetchSearchByIdAction(parseInt(searchInput)));
 
     setSearchInput(""); // Limpiar el input después de la búsqueda
   };
@@ -48,8 +48,5 @@ const SearchBar = () => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  
-})
 
-export default connect(mapStateToProps, {fetchSearchById})(SearchBar);
+export default SearchBar;

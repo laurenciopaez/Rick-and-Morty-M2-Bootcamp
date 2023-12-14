@@ -4,13 +4,15 @@ import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CardCharacter from "./Card";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 
-const Cards = ({ characters }) => {
+const Cards = () => {
   const itemsPerPage = 20;
   const [currentPage, setCurrentPage] = useState(1);
   const [closedCards, setClosedCards] = useState([]);
+
+  const characters = useSelector((state) => state.characters.characters);
 
   useEffect(() => {}, [characters]);
 
@@ -69,8 +71,6 @@ const Cards = ({ characters }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  characters: state.characters,
-});
 
-export default connect(mapStateToProps, {})(Cards);
+
+export default Cards;

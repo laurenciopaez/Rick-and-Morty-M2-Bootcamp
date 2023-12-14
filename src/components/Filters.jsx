@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { connect, useDispatch } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import {
-  fetchFilterGenre,
-  fetchFilterSpecies,
-  fetchFilterState,
-  fetchReset,
+  fetchFilterByGenreAction,
+  fetchFilterBySpeciesAction,
+  fetchFilterByStateAction,
+  fetchResetAction,
 } from "../redux/actions/actions";
 import Form from "react-bootstrap/Form";
 
-const Filters = ({ species }) => {
+const Filters = () => {
   const dispatch = useDispatch();
-
+  const species = useSelector((state) => state.characters.species);
   const handleReset = (event) => {
     event.preventDefault();
 
@@ -21,7 +21,7 @@ const Filters = ({ species }) => {
   const handleGenderSelect = (event) => {
     event.preventDefault();
     if (event.target.value !== "none") {
-      dispatch(fetchFilterGenre(event.target.value));
+      dispatch(fetchFilterByGenreAction(event.target.value));
     } else {
       Reset();
     }
@@ -30,7 +30,7 @@ const Filters = ({ species }) => {
   const handleStatusSelect = (event) => {
     event.preventDefault();
     if (event.target.value !== "none") {
-      dispatch(fetchFilterState(event.target.value));
+      dispatch(fetchFilterByStateAction(event.target.value));
     } else {
       Reset();
     }
@@ -39,7 +39,7 @@ const Filters = ({ species }) => {
   const handleSpecieSelect = (event) => {
     event.preventDefault();
     if (event.target.value !== "none") {
-      dispatch(fetchFilterSpecies(event.target.value));
+      dispatch(fetchFilterBySpeciesAction(event.target.value));
     } else {
       Reset();
     }
@@ -50,7 +50,7 @@ const Filters = ({ species }) => {
     document.getElementById("genderSelect").value = "none";
     document.getElementById("statusSelect").value = "none";
 
-    dispatch(fetchReset());
+    dispatch(fetchResetAction());
   };
 
   useEffect(() => {}, [species]);
@@ -122,13 +122,4 @@ const Filters = ({ species }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  species: state.species,
-});
-
-export default connect(mapStateToProps, {
-  fetchReset,
-  fetchFilterGenre,
-  fetchFilterState,
-  fetchFilterSpecies,
-})(Filters);
+export default Filters;

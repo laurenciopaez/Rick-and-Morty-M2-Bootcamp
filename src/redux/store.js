@@ -4,7 +4,7 @@ import charactersReducer from './reducers/reducers.js';
 
 const store = configureStore({
     reducer: {
-        charactersReducer,
+        characters: charactersReducer,
     }
   })
 
