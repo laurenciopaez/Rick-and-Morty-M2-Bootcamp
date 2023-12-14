@@ -7,7 +7,7 @@ import Filters from "./Filters.jsx";
 import { fetchCharacters, getSpecies } from "../redux/actions/actions.js";
 
 const Home = ({ fetchCharacters }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchCharacters();
@@ -21,16 +21,16 @@ const Home = ({ fetchCharacters }) => {
         width: "screen",
         height: "100vh",
       }}
-      className="h-auto m-0 p-0"
+      className="h-auto m-0 p-0 flex flex-col min-h-screen"
     >
       <div className="mt-2 mb-2 w-full">
         <SearchBar />
       </div>
-      <div className="w-full flex flex-row h-4/5">
+      <div className="w-full flex flex-row h-full">
         <div className="w-1/3 m-1 p-1 bg-slate-50 rounded-md h-1/3">
           <Filters />
         </div>
-        <div className="w-2/3 container mt-1">
+        <div className="w-2/3 container mt-1 h-auto">
           <Cards />
         </div>
       </div>
