@@ -10,16 +10,22 @@ import { Button } from "react-bootstrap";
 const Cards = ({ characters }) => {
   const itemsPerPage = 20;
   const [currentPage, setCurrentPage] = useState(1);
+  const [closedCards, setClosedCards] = useState([]);
 
   useEffect(() => {}, [characters]);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
+  const handleCardClose = (id) => {
+    setClosedCards([...closedCards, id]);
+  };
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  const charactersToShow = characters.slice(startIndex, endIndex);
+  const charactersToShow = characters
+    .slice(startIndex, endIndex)
+    .filter((character) => !closedCards.includes(character.id));
 
   return (
     <Row xs={1} md={4} className="g-4">
@@ -34,7 +40,7 @@ const Cards = ({ characters }) => {
               image={image}
               origin={origin.name}
               status={status}
-              // onClose={() => handleClick(id)}
+              onClose={() => handleCardClose(id)}
             />
           </Col>
         )

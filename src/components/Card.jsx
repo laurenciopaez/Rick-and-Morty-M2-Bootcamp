@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
@@ -13,6 +14,13 @@ const CardCharacter = ({
 }) => {
   //now its a bootstrap card item
 
+  const [isCardOpen, setIsCardOpen] = useState(true);
+
+  const handleCardClose = () => {
+    setIsCardOpen(false);
+    onClose(); 
+  };
+
   const statusColorClass = status === "Alive" ? "bg-green-500" : "bg-red-500";
 
   return (
@@ -27,7 +35,7 @@ const CardCharacter = ({
           Origin: {origin}
         </Card.Text>
 
-        <Button variant="primary" onClick={onClose} className="bg-blue-500 absolute bottom-1 right-1">
+        <Button variant="primary" onClick={handleCardClose} className="bg-blue-500 absolute bottom-1 right-1">
           Close
         </Button>
 
