@@ -22,7 +22,7 @@ const CardCharacter = ({
   const dispatch = useDispatch();
 
   const character = useSelector((state) => state.characters.characters);
-  const fav_List = useSelector((state) => state.characters.liked_characters);
+ 
 
   const [isCardOpen, setIsCardOpen] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
@@ -42,7 +42,6 @@ const CardCharacter = ({
     setIsLiked(!isLiked);
   };
 
-  //console.log(id)
 
   const statusColorClass = status === "Alive" ? "bg-green-500" : "bg-red-500";
 

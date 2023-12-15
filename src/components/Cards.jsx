@@ -16,6 +16,9 @@ const Cards = () => {
 
   const characters = useSelector((state) => state.characters.characters);
 
+const liked = useSelector((state) => state.characters.liked_characters)
+console.log(liked)
+
   useEffect(() => {}, [characters]);
 
   const handlePageChange = (newPage) => {

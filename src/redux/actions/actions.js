@@ -25,7 +25,9 @@ export const fetchUnlikedCharacters = (id) => (dispatch, getState) => {
     (character) => character.id !== id
   );
   let newPack = newLikedCharacters;
+  console.log('Unlike')
   dispatch(deleteLike(newPack));
+  
 };
 
 export const fetchCharactersRequestAction = () => (dispatch) => {
