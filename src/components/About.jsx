@@ -11,7 +11,7 @@ const About = () => {
         </Button>
 
         <div>
-          <h1 className="text-3xl font-semibold ml-10 ">
+          <h1 className="lg:text-3xl font-semibold ml-10 sm:text-sm md:text-lg ">
             Welcome to About Page
           </h1>
         </div>
@@ -23,18 +23,18 @@ const About = () => {
             "url('https://wallpapers.com/images/hd/rick-and-morty-fighting-green-aliens-zp6odvm0462ff5c2.jpg'",
         }}
       >
-        <div className="w-5/6 bg-slate-50 rounded-md h-5/6 m-auto">
-          <h2 className="font-semibold text-black text-xl m-2">
+        <div className="w-5/6 bg-slate-50 rounded-md h-5/6 m-auto overflow-auto">
+          <h2 className="font-semibold text-black lg:text-xl m-2 md:text-lg sm:text-sm">
             Utilized Technologies
           </h2>
-          <p className="text-black text-lg font-medium m-2">
+          <p className="text-black lg:text-lg font-medium m-2 md:text-base sm:text-sm">
             This project utilizes the Rick and Morty API to create an
             interactive web application that allows users to explore and obtain
             information about characters from the animated series "Rick and
             Morty." The application offers various functionalities to enhance
             the user experience, including:
           </p>
-          <ul className="text-black text-lg text-justify m-3">
+          <ul className="text-black lg:text-lg text-justify m-3 md:text-base sm:text-sm">
             <li>
               <strong>@reduxjs/toolkit (v2.0.1):</strong> Toolkit for efficient
               Redux development.
@@ -97,7 +97,7 @@ const About = () => {
           </ul>
           <a
             href="https://github.com/laurenciopaez/Rick-and-Morty-M2-Bootcamp"
-            className="text-blue-500 text-2xl font-semibold m-3"
+            className="text-blue-500 lg:text-2xl font-semibold m-3 md:text-xl sm:text-base pb-3"
           >
             Repository
           </a>
