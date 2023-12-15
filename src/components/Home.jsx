@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(fetchCharactersAction());
+      dispatch(fetchCharactersAction());
       dispatch(getSpeciesAction());
     };
 

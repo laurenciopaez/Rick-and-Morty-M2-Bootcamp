@@ -42,3 +42,41 @@
     background-color: rgba(240, 240, 240, 0); /* Color de fondo de la pista de la barra de desplazamiento con transparencia */
     border-radius: 12px; /* Color de fondo de la pista de la barra de desplazamiento */
   }
+
+  .fade-enter {
+    opacity: 0;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+  }
+  
+  .fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  /* animacion scale */
+
+  .scale-enter {
+    transform: scale(0);
+  }
+  
+  .scale-enter-active {
+    transform: scale(1);
+    transition: transform 500ms ease-in-out;
+  }
+  
+  .scale-exit {
+    transform: scale(1);
+  }
+  
+  .scale-exit-active {
+    transform: scale(0);
+    transition: transform 500ms ease-in-out;
+  }

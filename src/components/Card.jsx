@@ -16,16 +16,17 @@ const CardCharacter = ({
   origin,
   image,
   onClose,
-  index
+  index,
 }) => {
   //now its a bootstrap card item
   const dispatch = useDispatch();
-  
+
   const character = useSelector((state) => state.characters.characters);
   const fav_List = useSelector((state) => state.characters.liked_characters);
 
   const [isCardOpen, setIsCardOpen] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleCardClose = () => {
     setIsCardOpen(false);
@@ -46,7 +47,15 @@ const CardCharacter = ({
   const statusColorClass = status === "Alive" ? "bg-green-500" : "bg-red-500";
 
   return (
-    <Card className="w-[90%] h-[100%] relative">
+    <Card
+      className="w-[90%] h-[100%] relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        transform: isHovered ? "scale(1.015)" : "scale(1)",
+        transition: "transform 0.3s ease-in-out",
+      }}
+    >
       <div className="absolute top-0 right-0">
         <div className="absolute top-2 right-2">
           <Button variant="link" onClick={handleLikeClick}>

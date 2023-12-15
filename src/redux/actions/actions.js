@@ -20,7 +20,7 @@ export const fetchLikedCharacters = (character) => (dispatch) => {
 
 export const fetchUnlikedCharacters = (id) => (dispatch, getState) => {
   const state = getState();
-  console.log(state.characters.liked_characters);
+  
   const newLikedCharacters = state.characters.liked_characters.filter(
     (character) => character.id !== id
   );
@@ -44,10 +44,10 @@ export const getSpeciesAction = () => (dispatch, getState) => {
   let species = [];
 
   const state = getState();
-  let objCharacters = state.characters;
-
+  let objCharacters = state.characters.characters;
+  
   const charactersArray = Object.values(objCharacters);
-
+  
   charactersArray.forEach((element) => {
     if (!species.includes(element.species)) {
       species.push(element.species);
@@ -91,12 +91,12 @@ export const fetchCharactersAction = () => (dispatch) => {
 export const fetchSearchByIdAction = (characterId) => (dispatch, getState) => {
   const state = getState();
 
-  if (!state || !state.characters) {
+  if (!state || !state.characters.characters) {
     console.error("El estado no está definido o no tiene la propiedad characters");
     return;
   }
 
-  const charactersState = state.characters;
+  const charactersState = state.characters.characters;
   let existingCharacter = null;
 
   if (characterId == null) {
@@ -139,7 +139,7 @@ export const fetchFilterByGenreAction = (genre) => (dispatch, getState) => {
     return;
   }
 
-  const charactersState = state.characters;
+  const charactersState = state.characters.characters;
   let leftGenres = [];
 
   const charactersArray = Object.values(charactersState);
@@ -160,7 +160,7 @@ export const fetchFilterByStateAction = (status) => (dispatch, getState) => {
     console.error("El estado no está definido o no tiene la propiedad characters");
     return;
   }
-  const charactersState = state.characters;
+  const charactersState = state.characters.characters;
   let leftState = [];
 
   const charactersArray = Object.values(charactersState);
@@ -181,7 +181,7 @@ export const fetchFilterBySpeciesAction = (species) => (dispatch, getState) => {
     console.error("El estado no está definido o no tiene la propiedad characters");
     return;
   }
-  const charactersState = state.characters;
+  const charactersState = state.characters.characters;
   let leftSpecies = [];
 
   const charactersArray = Object.values(charactersState);

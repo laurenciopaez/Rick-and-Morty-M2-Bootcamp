@@ -6,6 +6,8 @@ import Col from "react-bootstrap/Col";
 import CardCharacter from "./Card";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 
 const Cards = () => {
   const itemsPerPage = 20;
@@ -31,8 +33,10 @@ const Cards = () => {
 
   return (
     <Row xs={1} md={4} className="g-4">
+      <TransitionGroup component={null}>
       {charactersToShow.map(
         ({ id, name, species, gender, image, origin, status }, index) => (
+          <CSSTransition key={id} timeout={500} classNames="scale" > 
           <Col key={id}>
             <CardCharacter
               index = {index}
@@ -46,8 +50,10 @@ const Cards = () => {
               onClose={() => handleCardClose(id)}
             />
           </Col>
+          </CSSTransition>
         )
       )}
+      </TransitionGroup>
       <div className="w-full justify-center flex">
         <div className="pr-2 pl-2 bg-slate-50 justify-center flex rounded-md items-center">
           <Button
