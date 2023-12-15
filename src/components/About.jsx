@@ -2,8 +2,8 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-class About extends React.Component {
-  render() {
+const About =() => {
+
     return (
       <div className="w-full h-screen">
         <div className="flex flex-row w-2/5 h-auto justify-center items-center m-auto pt-2">
@@ -74,7 +74,7 @@ class About extends React.Component {
         </div>
       </div>
     );
-  }
+  
 }
 
 export default About;

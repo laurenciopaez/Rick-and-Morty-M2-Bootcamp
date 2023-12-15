@@ -1,121 +1,31 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-class Comentarios extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            name: "",
-            lastname: "",
-            mail: "",
-            errors:{
-                name: "",
-                lastname: "",
-                mail: "",
-            },
-            comment: "",
-            disabled: true,
-        };
+const Comentarios = () => {
 
-        this.handleChange = this.handleChange.bind(this);
-    }
-/* 
-    validateEmail(value) {
-        var emailPatter = /\S+@\S+\.\S+/;
+  return (
+    <div className="w-full h-screen">
+    <div className="flex flex-row w-2/5 h-auto justify-center items-center m-auto pt-2">
+      <Button className="bg-blue-500 mb-2 mt-2">
+        <Link to="/">Home</Link>
+      </Button>
 
-        if (!emailPatter.test(value)){
-            this.setState({
-                errors: "Debe ser un mail",
-            })
-        } else {
-            this.setState({
-                errors: "",
-            })
-        }
-    } */
-
-    validarForm(errors){
-        let valid = true;
-        Object.values(errors).forEach(
-            (val) => val.length > 0 && (valid = false));
-        if (valid) {
-            this.setState({
-                disabled:false
-            })
-        } else {
-            this.setState({
-                disabled: true
-            })
-        }
-    }
-
-    handleChange(e) {
-        const value = e.target.value;
-        const name = e.target.name;
-        // const {name, value} = e.target;
-
-        let errors = this.state.errors;
-
-        switch(name){
-            case "name":
-                errors.name = value.length < 3
-                ? "Nombre debe tener al menos 3 caracters "
-                : "";
-                break;
-            case "lastname":
-                errors.lastname = value.length < 3 
-                ? "Apellido debe tener al menos 3 caracteres" 
-                : "";
-                break;
-            case "mail":
-                //this.validateEmail(this.state.mail);
-                var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
-                errors.mail = emailPattern.test(value)
-                  ? ""
-                  : "El usuario debe ser un email";
-                break;
-            default:
-                break;
-        }
-
-        this.setState({
-            [name]: value,
-            errors,
-        });
-
-        this.validarForm(this.state.errors);
-    }
-
-
-    render()  {
-        return( 
-            <div >
-                <div >
-                    <button>
-                    <Link to='/'>Home</Link>
-                    </button>
-                </div>
-                <div >
-                    <h1 >Seccion de comentarios</h1>
-                    <form >
-                        <input name="name" type="name" value={this.state.name} onChange={this.handleChange} c placeholder="Nombre"/>
-                        {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
-
-                        <input name="lastname" type="name" value={this.state.lastname} onChange={this.handleChange} placeholder="Apellido" />
-                        {!this.state.errors.lastname ? null : <div>{this.state.errors.lastname}</div>}
-
-                        <input name="mail" type="name" value={this.state.mail} onChange={this.handleChange}  placeholder="ejemplo@gmail.com" />
-                        {!this.state.errors.mail ? null : <div>{this.state.errors.mail}</div>}
-
-                        <input name="comment" type="text" value={this.state.comment} onChange={this.handleChange} placeholder="Su comentario aqui" />
-
-                        
-                        <input type="submit" value="Submit" />
-                    </form>
-                </div>
-            </div>
-        );
-    }
+      <div>
+        <h1 className="text-3xl font-semibold ml-10 ">
+          Welcome to Favs Page
+        </h1>
+      </div>
+    </div>
+    <div className="w-4/5 rounded-md h-4/5 m-auto mt-2 flex items-center" style={{
+        backgroundImage: "url('https://wallpapers.com/images/hd/rick-and-morty-fighting-green-aliens-zp6odvm0462ff5c2.jpg'"
+    }}>
+      <div className="w-5/6 bg-slate-50 rounded-md h-5/6 m-auto">
+    </div>
+    </div>
+  </div>
+);
 }
+
 
 export default Comentarios;
