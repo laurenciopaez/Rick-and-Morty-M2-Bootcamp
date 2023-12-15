@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,11 +22,17 @@ const CardCharacter = ({
   const dispatch = useDispatch();
 
   const character = useSelector((state) => state.characters.characters);
+  const liked = useSelector( (state) => state.characters.liked_characters)
+ 
  
 
+
   const [isCardOpen, setIsCardOpen] = useState(true);
+
   const [isLiked, setIsLiked] = useState(false);
+
   const [isHovered, setIsHovered] = useState(false);
+
 
   const handleCardClose = () => {
     setIsCardOpen(false);
@@ -42,6 +48,13 @@ const CardCharacter = ({
     setIsLiked(!isLiked);
   };
 
+  useEffect( () => {
+    liked.forEach((element) => {
+      if (name === element.name) {
+        setIsLiked(true);
+      }
+    })
+    } , [])
 
   const statusColorClass = status === "Alive" ? "bg-green-500" : "bg-red-500";
 
