@@ -81,13 +81,13 @@ const CardCharacter = ({
       </div>
       <Card.Img variant="top" src={image} className="h-[45%]" />
       <Card.Body className="relative">
-        <Card.Title className="text-2xl">{name}</Card.Title>
+        <Card.Title className="lg:text-2xl md:text-xl sm:text-2xl">{name}</Card.Title>
         <Card.Subtitle
           className={`mb-2 text-white rounded-md p-1 text-center w-1/2 m-auto ${statusColorClass}`}
         >
           {status}
         </Card.Subtitle>
-        <Card.Text className="mt-1 mb-1 text-sm ">
+        <Card.Text className="mt-1 mb-1 lg:text-sm sm:text-xl ">
           Species: {species} <br />
           Gender: {gender} <br />
           Origin: {origin}
