@@ -60,7 +60,7 @@ const CardCharacter = ({
 
   return (
     <Card
-      className="w-[90%] h-[100%] relative"
+      className="md:w-[90%] w-[60%] h-[100%] relative m-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{

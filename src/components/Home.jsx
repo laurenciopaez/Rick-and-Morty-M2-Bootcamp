@@ -29,11 +29,11 @@ const Home = () => {
       <div className="mt-2 mb-2 w-full">
         <SearchBar />
       </div>
-      <div className="w-full flex flex-row h-full">
-        <div className="w-1/3 m-1 p-1 bg-slate-50 rounded-md h-1/3">
+      <div className="w-full flex lg:flex-row md:flex-row flex-col h-full">
+        <div className="md:w-1/3 w-full m-1 p-1 bg-slate-50 rounded-md h-1/3">
           <Filters />
         </div>
-        <div className="w-2/3 container mt-1 h-auto">
+        <div className="md:w-2/3 w-full container md:mt-1 h-auto sm:mt-4 lg:mt-1 xl:mt-1">
           <Cards />
         </div>
       </div>

@@ -58,11 +58,11 @@ const Filters = () => {
   return (
     <>
       <div>
-        <h1 className="text-2xl font-semibold text-black w-full text-center border-b-2 mb-1">
+        <h1 className="lg:text-2xl md:text-xl sm:text-lg font-semibold text-black w-full text-center border-b-2 mb-1">
           Filters
         </h1>
         <div className="w-full flex justify-between items-center pl-1 pr-1 border-b-2 mb-1">
-          <h2 className="text-lg font-semibold text-black w-1/3">
+          <h2 className="lg:text-lg md:text-md sm:text-sm font-semibold text-black w-1/3">
             Reset all the filters:
           </h2>
           <Button className="bg-blue-500 mb-2 mt-2" onClick={handleReset}>
@@ -70,7 +70,7 @@ const Filters = () => {
           </Button>
         </div>
         <div className="w-full flex justify-between items-center pl-1 pr-1 border-b-2 mb-1">
-          <h2 className="text-lg font-semibold text-black w-1/3">
+          <h2 className="lg:text-lg md:text-md sm:text-sm font-semibold text-black w-1/3">
             Search by Specie:
           </h2>
           <Form.Select
@@ -87,7 +87,7 @@ const Filters = () => {
           </Form.Select>
         </div>
         <div className="w-full flex justify-between items-center pl-1 pr-1 border-b-2 mb-1">
-          <h2 className="text-lg font-semibold text-black w-1/3">
+          <h2 className="lg:text-lg md:text-md sm:text-sm font-semibold text-black w-1/3">
             Search by Gender:
           </h2>
           <Form.Select
@@ -103,7 +103,7 @@ const Filters = () => {
           </Form.Select>
         </div>
         <div className="w-full flex justify-between items-center pl-1 pr-1 border-b-2 mb-1">
-          <h2 className="text-lg font-semibold text-black w-1/3">
+          <h2 className="lg:text-lg md:text-md sm:text-sm font-semibold text-black w-1/3">
             Search by Status:
           </h2>
           <Form.Select

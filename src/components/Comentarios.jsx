@@ -37,7 +37,7 @@ const Favs = () => {
         </Button>
 
         <div>
-          <h1 className="text-3xl font-semibold ml-10 ">
+          <h1 className="lg:text-3xl md:text-2xl sm:text-xl font-semibold ml-10 ">
             Welcome to Favs Page
           </h1>
         </div>
@@ -49,8 +49,8 @@ const Favs = () => {
             "url('https://wallpapers.com/images/hd/rick-and-morty-fighting-green-aliens-zp6odvm0462ff5c2.jpg'",
         }}
       >
-        <div className="w-5/6 bg-slate-50 rounded-md h-5/6 m-auto">
-          <Row xs={1} md={4} className="g-4">
+        <div className="w-5/6 bg-slate-50 rounded-md h-5/6 m-auto overflow-auto">
+          <Row xs={1} md={2} lg={3} xl={4} className="g-4">
             <TransitionGroup component={null}>
               {favChars.map(
                 (
