@@ -35,7 +35,7 @@ console.log(liked)
     .filter((character) => !closedCards.includes(character.id));
 
   return (
-    <Row xs={1} md={4} className="g-4">
+    <Row xs={1} md={2} lg={3} xl={4} className="g-4">
       <TransitionGroup component={null}>
       {charactersToShow.map(
         ({ id, name, species, gender, image, origin, status }, index) => (
