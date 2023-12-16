@@ -1,60 +1,60 @@
-import { Link } from 'react-router-dom';
-import styles from '../styles/button.module.css';
-import style from '../styles/div.module.css';
-import inpute from '../styles/input.module.css';
-import React from 'react';
-import Font from '../styles/font.module.css'
- 
-class SearchBar extends React.Component{
-   constructor(props) {
-      super(props);
-      this.state = {
-         searchInput: '',
-      };
-   }
+import React, { useState } from "react";
+import { Button, Form, Container, Navbar, Nav } from "react-bootstrap";
+import { fetchSearchByIdAction } from "../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
-   handleSubmit = (event) => {
-      event.preventDefault(); //buena costumbre nomas 
-      this.props.onSearch(this.state.searchInput); //envia mediante onSearch lo que esta dentro del value
-      this.setState({ searchInput: '' }); //se resetea
-    };
+const SearchBar = () => {
+  const dispatch = useDispatch();
+  const [searchInput, setSearchInput] = useState("");
 
-  handleInput = (event) => { //esto recarga la pagina cada vez que escribimos, nada mas
-    this.setState({ searchInput: event.target.value }); 
-    console.log('hola '+this.state.searchInput) // control
+  const handleInput = (event) => {
+    setSearchInput(event.target.value);
   };
 
-   render() {
-      return (
-         <>
-         <div className={style.nav_container}>
-            <div className={style.divContainer}>
-               <button className={styles.button_85}>
-                  <Link to='/about' className={Font.estilo_link}>About</Link>
-               </button>
-            </div>
-         </div>
-         <div className={style.nav_container}>
-            <form onSubmit={this.handleSubmit}>
-            <input 
-               type='search' 
-               className={inpute.input}
-               value={this.state.searchInput}
-               onChange={this.handleInput}
-            /> 
-            <button type='submit' className={styles.button_85}>Agregar</button> 
-            </form>
-         </div>
-         <div className={style.nav_container}>
-            <div className={style.divContainer}>
-               <button className={styles.button_85}>
-                  <Link to='/comentarios' className={Font.estilo_link}>Comentarios</Link>
-               </button>
-            </div>
-         </div>
-         </>
-      );
-   }
-}; 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    dispatch(fetchSearchByIdAction(parseInt(searchInput)));
+
+    setSearchInput(""); // Limpiar el input después de la búsqueda
+  };
+  return (
+    <Navbar
+      bg="light"
+      expand="md"
+      className=" w-4/5 rounded-lg items-center justify-between m-auto"
+      style={{
+        backgroundImage: 'url("https://www.xtrafondos.com/thumbs/1_9386.jpg")',
+      }}
+    >
+      <Container fluid>
+        <Navbar.Brand href="/about" className="text-white lg:text-xl md:text-lg sm:text-md bg-blue-500 rounded-md font-sans p-1">
+          About
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbar-nav" />
+        <Navbar.Collapse id="navbar-nav">
+          <Nav className="mr-auto"></Nav>
+          <Form inline className="flex flex-row ">
+            <Form.Control
+              type="search"
+              value={searchInput}
+              onChange={handleInput}
+              className="rounded-md mr-2 p-1 mt-1 mb-1 border-black text-black border-1 bg-white"
+              placeholder="Search by id"
+            />
+            <Button onClick={handleSubmit} className="bg-blue-500 mt-1 mb-1">
+              Search
+            </Button>
+          </Form>
+          <Nav className="ml-auto">
+            <Nav.Link href="/favs" className="text-white lg:text-xl md:text-lg sm:text-md bg-blue-500 rounded-md font-sans w-1/5 text-center md:w-full lg:w-full">
+              Your favs
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
 
 export default SearchBar;

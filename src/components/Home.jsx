@@ -1,59 +1,44 @@
-import Cards from './Cards.jsx';
-import characters from '../data.js';
-import styles from '../styles/div.module.css';
-import SearchBar from './SearchBar.jsx';
-import React from 'react';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import Cards from "./Cards.jsx";
+import SearchBar from "./SearchBar.jsx";
+import Filters from "./Filters.jsx";
+import { fetchCharactersAction, getSpeciesAction } from "../redux/actions/actions.js";
 
-class Home extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-           characters: characters,
-           OrigCharacters: characters
-        }
-     }
-     
-     handleSearch = (data) => {
-        const characters = this.state.characters;
-        const prueba1 = this.state.OrigCharacters;
-        console.log('debajo de esto')
-        console.log(prueba1)  //funciona
-  
-        const existingCharacter = characters.find( //me esta guardando el character que pedi
-          (character) => character.id === parseInt(data)
-        );
-  
-        console.log(existingCharacter)
-    
-        if (existingCharacter) {
-          this.setState({
-            characters: this.state.characters.map((character) =>
-              character.id === parseInt(data) ? { ...character, render: true } : character
-            ),
-          });
-        }
-      };
-  
-      handleCharacterDelete = (id) => {
-        this.setState((prevState) => ({
-          characters: prevState.characters.map((character) =>
-            character.id === id ? { ...character, render: false } : character
-          ),
-        }));
-      };
-      
-     render(){
-        const characters = this.state.characters
-     return (
-        
-        <div className={styles.fondo}>
-           <div className={styles.nav}>
-              <SearchBar onSearch={this.handleSearch}/>
-            </div>
-              <Cards characters={characters} onCharacterDelete={this.handleCharacterDelete}/>
-            </div>
-     );
-  }
-}
+const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(fetchCharactersAction());
+      dispatch(getSpeciesAction());
+    };
+
+    fetchData();
+  }, [dispatch]);
+
+  return (
+    <div
+      style={{
+        backgroundImage: `url("https://i.pinimg.com/564x/e0/c7/47/e0c747a9d869f40f6d572a651791bdb5.jpg")`,
+        width: "screen",
+        height: "100vh",
+      }}
+      className="h-auto m-0 p-0 flex flex-col min-h-screen"
+    >
+      <div className="mt-2 mb-2 w-full">
+        <SearchBar />
+      </div>
+      <div className="w-full flex lg:flex-row md:flex-row flex-col h-full">
+        <div className="md:w-1/3 w-full m-1 p-1 bg-slate-50 rounded-md h-1/3">
+          <Filters />
+        </div>
+        <div className="md:w-2/3 w-full container md:mt-1 h-auto sm:mt-4 lg:mt-1 xl:mt-1">
+          <Cards />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Home;

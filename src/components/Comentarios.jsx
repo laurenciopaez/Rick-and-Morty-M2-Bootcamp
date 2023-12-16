@@ -1,125 +1,106 @@
-import React from "react";
-import Font from '../styles/font.module.css';
-import style from '../styles/div.module.css';
-import input from '../styles/input.module.css';
-import boton from '../styles/button.module.css';
-import {Link} from "react-router-dom"
+import React, { useState } from "react";
+import { Button, Col, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import CardCharacter from "./Card";
 
-class Comentarios extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            name: "",
-            lastname: "",
-            mail: "",
-            errors:{
-                name: "",
-                lastname: "",
-                mail: "",
-            },
-            comment: "",
-            disabled: true,
-        };
+const Favs = () => {
+  const [isCardOpen, setIsCardOpen] = useState(true);
+  const favChars = useSelector((state) => state.characters.liked_characters);
+    console.log(favChars)
+  const itemsPerPage = 20;
 
-        this.handleChange = this.handleChange.bind(this);
-    }
-/* 
-    validateEmail(value) {
-        var emailPatter = /\S+@\S+\.\S+/;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [closedCards, setClosedCards] = useState([]);
 
-        if (!emailPatter.test(value)){
-            this.setState({
-                errors: "Debe ser un mail",
-            })
-        } else {
-            this.setState({
-                errors: "",
-            })
-        }
-    } */
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+  const handleCardClose = (id) => {
+    setClosedCards([...closedCards, id]);
+  };
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
 
-    validarForm(errors){
-        let valid = true;
-        Object.values(errors).forEach(
-            (val) => val.length > 0 && (valid = false));
-        if (valid) {
-            this.setState({
-                disabled:false
-            })
-        } else {
-            this.setState({
-                disabled: true
-            })
-        }
-    }
-
-    handleChange(e) {
-        const value = e.target.value;
-        const name = e.target.name;
-        // const {name, value} = e.target;
-
-        let errors = this.state.errors;
-
-        switch(name){
-            case "name":
-                errors.name = value.length < 3
-                ? "Nombre debe tener al menos 3 caracters "
-                : "";
-                break;
-            case "lastname":
-                errors.lastname = value.length < 3 
-                ? "Apellido debe tener al menos 3 caracteres" 
-                : "";
-                break;
-            case "mail":
-                //this.validateEmail(this.state.mail);
-                var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
-                errors.mail = emailPattern.test(value)
-                  ? ""
-                  : "El usuario debe ser un email";
-                break;
-            default:
-                break;
-        }
-
-        this.setState({
-            [name]: value,
-            errors,
-        });
-
-        this.validarForm(this.state.errors);
-    }
+  const charactersToShow = favChars
+    .slice(startIndex, endIndex)
+    .filter((character) => !closedCards.includes(character.id));
 
 
-    render()  {
-        return( 
-            <div className={style.fondo}>
-                <div className={style.return}>
-                    <button className={boton.button_85}>
-                    <Link to='/home' className={Font.estilo_link}>Home</Link>
-                    </button>
-                </div>
-                <div className={style.aboutDiv}>
-                    <h1 className={Font.h1}>Seccion de comentarios</h1>
-                    <form className={style.aboutDiv2}>
-                        <input name="name" type="name" value={this.state.name} onChange={this.handleChange} className={input.input_comment} placeholder="Nombre"/>
-                        {!this.state.errors.name ? null : <div>{this.state.errors.name}</div>}
 
-                        <input name="lastname" type="name" value={this.state.lastname} onChange={this.handleChange} className={input.input_comment} placeholder="Apellido" />
-                        {!this.state.errors.lastname ? null : <div>{this.state.errors.lastname}</div>}
+  return (
+    <div className="w-full h-screen">
+      <div className="flex flex-row w-2/5 h-auto justify-center items-center m-auto pt-2">
+        <Button className="bg-blue-500 mb-2 mt-2">
+          <Link to="/">Home</Link>
+        </Button>
 
-                        <input name="mail" type="name" value={this.state.mail} onChange={this.handleChange} className={input.input_comment} placeholder="ejemplo@gmail.com" />
-                        {!this.state.errors.mail ? null : <div>{this.state.errors.mail}</div>}
-
-                        <input name="comment" type="text" value={this.state.comment} onChange={this.handleChange} className={input.input_comment} placeholder="Su comentario aqui" />
-
-                        
-                        <input type="submit" value="Submit" className={boton.button_85}/>
-                    </form>
-                </div>
+        <div>
+          <h1 className="lg:text-3xl md:text-2xl sm:text-xl font-semibold ml-10 ">
+            Welcome to Favs Page
+          </h1>
+        </div>
+      </div>
+      <div
+        className="w-4/5 rounded-md h-4/5 m-auto mt-2 flex items-center"
+        style={{
+          backgroundImage:
+            "url('https://wallpapers.com/images/hd/rick-and-morty-fighting-green-aliens-zp6odvm0462ff5c2.jpg'",
+        }}
+      >
+        <div className="w-5/6 bg-slate-50 rounded-md h-5/6 m-auto overflow-auto">
+          <Row xs={1} md={2} lg={3} xl={4} className="g-4">
+            <TransitionGroup component={null}>
+              {favChars.map(
+                (
+                  { id, name, species, gender, image, origin, status },
+                  index
+                ) => (
+                  <CSSTransition key={id} timeout={500} classNames="scale">
+                    <Col key={id}>
+                      <CardCharacter
+                        index={index}
+                        id={id}
+                        name={name}
+                        species={species}
+                        gender={gender}
+                        image={image}
+                        origin={origin.name}
+                        status={status}
+                        onClose={() => handleCardClose(id)}
+                      />
+                    </Col>
+                  </CSSTransition>
+                )
+              )}
+            </TransitionGroup>
+            <div className="w-full justify-center flex">
+              <div className="pr-2 pl-2 bg-slate-50 justify-center flex rounded-md items-center">
+                <Button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="bg-blue-500 mb-2 mt-2 mr-2 w-24"
+                >
+                  Previous
+                </Button>
+                <span className="text-black text-2xl font-semibold">
+                  {currentPage}
+                </span>
+                <Button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={endIndex >= favChars.length}
+                  className="bg-blue-500 mb-2 mt-2 ml-2 w-24"
+                >
+                  Next
+                </Button>
+              </div>
             </div>
-        );
-    }
-}
+          </Row>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Comentarios;
+export default Favs;
