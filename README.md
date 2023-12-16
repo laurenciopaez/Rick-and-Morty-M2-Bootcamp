@@ -17,7 +17,7 @@
   <li><strong>Bootstrap (v5.3.2) y React-Bootstrap (v2.9.1):</strong> Framework y biblioteca de componentes CSS para el diseño y estilo de la aplicación.</li>
   <li><strong>Autoprefixer (v10.4.16):</strong> Plugin PostCSS que agrega prefijos de proveedores automáticamente al CSS.</li>
   <li><strong>Web Vitals (v2.1.4):</strong> Librería para medir el rendimiento de una aplicación web.</li>
-   <li><strong>React Scripts (v5.0.1):</strong> Scripts y configuraciones para Create React App.</li>
+  <li><strong>React Scripts (v5.0.1):</strong> Scripts y configuraciones para Create React App.</li>
   <li><strong>React Bootstrap Icons (v1.11.2):</strong> Iconos para Bootstrap en React.</li>
   <li><strong>React Transition Group (v4.4.5):</strong> Animaciones para componentes React.</li>
   <li><strong>Redux Persist (v6.0.0):</strong> Persiste y rehidrata un almacenamiento Redux.</li>
